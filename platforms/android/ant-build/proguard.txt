@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:6
+-keep class org.coenraets.employeedirectory.HelloWorld2 { <init>(...); }
+
