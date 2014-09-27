@@ -1,7 +1,7 @@
 var app = {
 
     findByName: function() {
-        console.log('findByName');
+        console.log('All');
         // this.store.findByName($('.search-key').val(), function(employees) {
         //     var l = employees.length;
         //     var e;
@@ -12,14 +12,14 @@ var app = {
         //     }
         // });
 
-        this.store.All($('.search-key').val(), function(weatherData) {
-            var l = weatherData.length;
-            console.log(weatherData);
-            var w;
+        this.store.All($('.search-key').val(), function(snows) {
+            var l = snows.length;
+            console.log(snows);
+            var s;
             $('.employee-list').empty();
             for (var i=0; i<l; i++) {
-                w = weatherData[i];
-                $('.employee-list').append('<li><a href="#weather/' + w.id + '">'+ "ID: "+ w.id+ ", Snowfall:" + w.snow);
+                s = snows[i];
+                $('.employee-list').append('<li><a href="#weather/' + s.id + '">'+ "ID: "+ s.id+ ", Snowfall:" + s.snow_depth);
             }
         });
 
@@ -27,9 +27,7 @@ var app = {
 
     initialize: function() {
         var self = this;
-        this.store = new MemoryStore(function() {
-            self.showAlert('App Started', 'Info');
-        });
+        this.store = new WebSqlStore2();
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
     },
 

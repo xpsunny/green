@@ -19,8 +19,6 @@ var WebSqlStore2 = function(successCallback, errorCallback) {
         )
     }
 
-YYYY-MM-DD HH:MM:SS
-
     this.createTable = function(tx) {
         tx.executeSql('DROP TABLE IF EXISTS weather');
         var sql = "CREATE TABLE IF NOT EXISTS weather ( " +
@@ -29,7 +27,7 @@ YYYY-MM-DD HH:MM:SS
             "state VARCHAR(50), " +
             "zip VARCHAR(50), " +
             "snow_depth INTEGER, " +
-            "rdate TIMESTAMP;"
+            "rdate TIMESTAMP)"
         tx.executeSql(sql, null,
                 function() {
                     console.log('Create table success');
@@ -41,17 +39,17 @@ YYYY-MM-DD HH:MM:SS
 
     this.addSampleData = function(tx, employees) {
         var snows = [
-                {"id": 1, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2014-01-01 03:01:04"},
-                {"id": 2, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2014-01-01 04:04:33"},
-                {"id": 3, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 05:22:53"},
-                {"id": 4, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 06:10:10"},
-                {"id": 5, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 07:44:01"},
-                {"id": 6, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 4, "rdate": "2014-01-01 08:00:11"},
-                {"id": 7, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 09:09:20"},
-                {"id": 8, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 10:01:00"},
-                {"id": 9, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 11:12:13"},
-                {"id": 10, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 8, "rdate": "2014-01-01 12:04:03"},
-                {"id": 11, "city": "Evanston", "state": "IL", "zip": "60208", "snow_depth": 11, "rdate": "2014-01-01 13:02:09"}
+                {"id": 1, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 22:01:04"},
+                {"id": 2, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 23:04:33"},
+                {"id": 3, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 00:22:53"},
+                {"id": 4, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 01:10:10"},
+                {"id": 5, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 02:44:01"},
+                {"id": 6, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 4, "rdate": "2014-01-01 03:00:11"},
+                {"id": 7, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 04:09:20"},
+                {"id": 8, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 05:01:00"},
+                {"id": 9, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 06:12:13"},
+                {"id": 10, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 8, "rdate": "2014-01-01 07:04:03"},
+                {"id": 11, "city": "Evanston", "state": "IL", "zip": "60208", "snow_depth": 11, "rdate": "2014-01-01 08:02:09"}
             ];
         var l = snows.length;
         var sql = "INSERT OR REPLACE INTO weather " +
@@ -70,6 +68,28 @@ YYYY-MM-DD HH:MM:SS
         }
     }
 
+    this.All = function(tx, callback) {
+        this.db.transaction(
+            function(tx) {
+
+                var sql = "SELECT * FROM weather";
+
+                tx.executeSql(sql, [], function(tx, results) {
+                    var len = results.rows.length,
+                        snows = [],
+                        i = 0;
+                    for (; i < len; i = i + 1) {
+                        snows[i] = results.rows.item(i);
+                    }
+                    callback(snows);
+                });
+            },
+            function(error) {
+                alert("Transaction Error: " + error.message);
+            }
+        );
+    }
+
     this.findByName = function(searchKey, callback) {
         this.db.transaction(
             function(tx) {
@@ -81,12 +101,12 @@ YYYY-MM-DD HH:MM:SS
 
                 tx.executeSql(sql, ['%' + searchKey + '%'], function(tx, results) {
                     var len = results.rows.length,
-                        employees = [],
+                        snows = [],
                         i = 0;
                     for (; i < len; i = i + 1) {
-                        employees[i] = results.rows.item(i);
+                        snows[i] = results.rows.item(i);
                     }
-                    callback(employees);
+                    callback(snows);
                 });
             },
             function(error) {
