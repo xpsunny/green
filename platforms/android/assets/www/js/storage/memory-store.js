@@ -6,6 +6,7 @@ var MemoryStore = function(successCallback, errorCallback) {
             return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
         });
         callLater(callback, employees);
+
     }
 
     this.findById = function(id, callback) {
@@ -18,7 +19,32 @@ var MemoryStore = function(successCallback, errorCallback) {
                 break;
             }
         }
+
         callLater(callback, employee);
+    }
+
+    this.All = function(searchKey, callback) {
+        var data =  this.weatherData;
+        // if(searchKey){
+        //     for (var i=0; i < data.length; i++) {
+        //         if (data[i].id === searchKey) {
+        //             data = data[i];
+        //             break;
+        //         }
+        //     }
+
+        // }
+
+        callLater(callback, data);
+    }
+
+    this.checkSnow = function() {
+        for(var i = 0; i < this.weatherData.length; i++){
+            if (this.weatherData[i].snow >= 3) {
+                return true;
+            }
+        }
+        return false;
     }
 
     // Used to simulate async calls. This is done to provide a consistent interface with stores (like WebSqlStore)
@@ -30,6 +56,12 @@ var MemoryStore = function(successCallback, errorCallback) {
             });
         }
     }
+
+    this.weatherData = [
+        {"id": 1, "snow": 1},
+        {"id": 2, "snow": 2},
+        {"id": 3, "snow": 10}
+    ]
 
     this.employees = [
             {"id": 1, "firstName": "Ryan", "lastName": "Howard", "title":"Vice President, North East", "managerId": 0, "city":"New York, NY", "cellPhone":"212-999-8888", "officePhone":"212-999-8887", "email":"ryan@dundermifflin.com"},

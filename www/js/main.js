@@ -27,9 +27,7 @@ var app = {
 
     initialize: function() {
         var self = this;
-        this.store = new MemoryStore(function() {
-            self.showAlert('App Started', 'Info');
-        });
+        this.store = new MemoryStore();
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
     },
 
