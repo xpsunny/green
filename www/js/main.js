@@ -2,15 +2,27 @@ var app = {
 
     findByName: function() {
         console.log('findByName');
-        this.store.findByName($('.search-key').val(), function(employees) {
-            var l = employees.length;
-            var e;
+        // this.store.findByName($('.search-key').val(), function(employees) {
+        //     var l = employees.length;
+        //     var e;
+        //     $('.employee-list').empty();
+        //     for (var i=0; i<l; i++) {
+        //         e = employees[i];
+        //         $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+        //     }
+        // });
+
+        this.store.All($('.search-key').val(), function(weatherData) {
+            var l = weatherData.length;
+            console.log(weatherData);
+            var w;
             $('.employee-list').empty();
             for (var i=0; i<l; i++) {
-                e = employees[i];
-                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
+                w = weatherData[i];
+                $('.employee-list').append('<li><a href="#weather/' + w.id + '">'+ "ID: "+ w.id+ ", Snowfall:" + w.snow);
             }
         });
+
     },
 
     initialize: function() {

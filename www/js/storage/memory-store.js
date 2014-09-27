@@ -6,6 +6,7 @@ var MemoryStore = function(successCallback, errorCallback) {
             return fullName.toLowerCase().indexOf(searchKey.toLowerCase()) > -1;
         });
         callLater(callback, employees);
+
     }
 
     this.findById = function(id, callback) {
@@ -18,7 +19,23 @@ var MemoryStore = function(successCallback, errorCallback) {
                 break;
             }
         }
+
         callLater(callback, employee);
+    }
+
+    this.All = function(searchKey, callback) {
+        var data =  this.weatherData;
+        // if(searchKey){
+        //     for (var i=0; i < data.length; i++) {
+        //         if (data[i].id === searchKey) {
+        //             data = data[i];
+        //             break;
+        //         }
+        //     }
+
+        // }
+
+        callLater(callback, data);
     }
 
     this.checkSnow = function() {
