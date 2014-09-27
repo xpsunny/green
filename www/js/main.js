@@ -16,18 +16,27 @@ var app = {
     initialize: function() {
         var self = this;
         this.store = new MemoryStore(function() {
-            self.showAlert('Store Initialized', 'Info');
+            self.showAlert('App Started', 'Info');
         });
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
     },
 
 
     showAlert: function (message, title) {
-        if (navigator.notification) {
-            navigator.notification.alert(message, null, title, 'OK');
-        } else {
-            alert(title ? (title + ": " + message) : message);
-        }
+        if(this.store.checkSnow()){       
+            if (navigator.notification) {
+                navigator.notification.alert(message, null, title, 'OK');
+            } else {
+                alert("Move your car!!! " + this.store.checkSnow());
+            }
+         } else {
+            if (navigator.notification) {
+                navigator.notification.alert(message, null, title, 'OK');
+            } else {
+                alert("There was no snowfall");
+            }
+
+         }
     },
 
     playBeep: function() {
