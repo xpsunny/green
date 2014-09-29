@@ -1,21 +1,55 @@
 <html>
-<body>
+<head>
+	<meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+</head>
+<body onload="app.showData();">
+<title>TicketSkipper</title>
+<div class='container'>
+	<div class='header text-center'>
+		<h1>TicketSkipper</h1>
+		<span>Stealing tow truck business since 2014.</span>
+	</div>
 
-<div class='header'><h1>Home</h1></div>
-<div class='search-view'>
-<input class='search-key' type="text"/>
-<ul class='employee-list'></ul>
+	<br/>
+	<br/>
+
+
+	<div>
+		<span><b>Today is: </b></span>
+		<span class="dateTime"></span>
+
+	</div>
+	<br/>
+
+	<button onclick="app.checkSnow(); return false;" class="btn btn-warning">Check for Recent Snowfall (Using dummy date/data)</button>
+</div>
+
+<br/>
+
+Dummy Data:
+<div class="container">
+<table class="table striped-rows">
+	<thead>
+		<td><b>#</b></td>
+		<td><b>Time</b></td>
+		<td><b>Snowfall</b></td>
+	<thead>
+	<tbody class="snow-list">
+		
+	</tbody>
+</table>
 </div>
 
 
-<p><a href="#" onclick="app.showAlert(); return false;">Show Alert</a></p>
-<p><a href="#" onclick="app.playBeep(); return false;">Play Beep</a></p>
-<p><a href="#" onclick="app.vibrate(); return false;">Vibrate</a></p>
 
 
 <script src="phonegap.js"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
-<script src="js/storage/memory-store.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="js/storage/websql-store.js"></script>
 <script src="js/main.js"></script>
 
 
