@@ -57,7 +57,7 @@ var app = {
             $('.snow-list').empty();
             for (var i=0; i<l; i++) {
                 s = snows[i];
-                $('.snow-list').append('<tr> <td> '+ s.id+ "</td> <td>" +s.rdate +"</td> <td>" + s.snow_depth + '</td></tr>');
+                $('.snow-list').append("<tr> <td>" +s.rdate +"</td> <td>" + s.snow_depth + '</td></tr>');
             }
         });
     },
@@ -69,7 +69,7 @@ var app = {
         var dummyCurrTime = new Date("2014-01-01 01:10:10")
         for(var i = 0; i<snowdata.length;i++) {
             if(new Date(snowdata[i].rdate) < dummyCurrTime && snowdata[i].snow_depth>=2) {
-                alert("Move your car!! There was " + snowdata[i].snow_depth + "inches of snow!");
+                alert("Move your car! There was " + snowdata[i].snow_depth + " inches of snow overnight.");
                 break;
             }
 

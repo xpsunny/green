@@ -37,7 +37,7 @@ var app = {
             if (navigator.notification) {
                 navigator.notification.alert(message, null, title, 'OK');
             } else {
-                alert("Move your car!!! " + this.store.checkSnow());
+                alert("Move your car! " + this.store.checkSnow());
             }
          } else {
             if (navigator.notification) {
