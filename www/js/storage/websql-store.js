@@ -2,7 +2,7 @@ var WebSqlStore = function(successCallback, errorCallback) {
 
     this.initializeDatabase = function(successCallback, errorCallback) {
         var self = this;
-        this.db = window.openDatabase("EmployeeDB", "1.0", "Employee Demo DB", 200000);
+        this.db = window.openDatabase("WeatherDB", "1.0", "Weather Demo DB", 200000);
         this.db.transaction(
                 function(tx) {
                     self.createTable(tx);
@@ -20,17 +20,14 @@ var WebSqlStore = function(successCallback, errorCallback) {
     }
 
     this.createTable = function(tx) {
-        tx.executeSql('DROP TABLE IF EXISTS employee');
-        var sql = "CREATE TABLE IF NOT EXISTS employee ( " +
+        tx.executeSql('DROP TABLE IF EXISTS weather');
+        var sql = "CREATE TABLE IF NOT EXISTS weather ( " +
             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            "firstName VARCHAR(50), " +
-            "lastName VARCHAR(50), " +
-            "title VARCHAR(50), " +
-            "managerId INTEGER, " +
             "city VARCHAR(50), " +
-            "officePhone VARCHAR(50), " +
-            "cellPhone VARCHAR(50), " +
-            "email VARCHAR(50))";
+            "state VARCHAR(50), " +
+            "zip VARCHAR(50), " +
+            "snow_depth INTEGER, " +
+            "rdate TIMESTAMP)"
         tx.executeSql(sql, null,
                 function() {
                     console.log('Create table success');
@@ -41,31 +38,27 @@ var WebSqlStore = function(successCallback, errorCallback) {
     }
 
     this.addSampleData = function(tx, employees) {
-        var employees = [
-                {"id": 1, "firstName": "Ryan", "lastName": "Howard", "title":"Vice President, North East", "managerId": 0, "city":"New York, NY", "cellPhone":"212-999-8888", "officePhone":"212-999-8887", "email":"ryan@dundermifflin.com"},
-                {"id": 2, "firstName": "Michael", "lastName": "Scott", "title":"Regional Manager", "managerId": 1, "city":"Scranton, PA", "cellPhone":"570-865-2536", "officePhone":"570-123-4567", "email":"michael@dundermifflin.com"},
-                {"id": 3, "firstName": "Dwight", "lastName": "Schrute", "title":"Assistant Regional Manager", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-865-1158", "officePhone":"570-843-8963", "email":"dwight@dundermifflin.com"},
-                {"id": 4, "firstName": "Jim", "lastName": "Halpert", "title":"Assistant Regional Manager", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-865-8989", "officePhone":"570-968-5741", "email":"dwight@dundermifflin.com"},
-                {"id": 5, "firstName": "Pamela", "lastName": "Beesly", "title":"Receptionist", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-999-5555", "officePhone":"570-999-7474", "email":"pam@dundermifflin.com"},
-                {"id": 6, "firstName": "Angela", "lastName": "Martin", "title":"Senior Accountant", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-555-9696", "officePhone":"570-999-3232", "email":"angela@dundermifflin.com"},
-                {"id": 7, "firstName": "Kevin", "lastName": "Malone", "title":"Accountant", "managerId": 6, "city":"Scranton, PA", "cellPhone":"570-777-9696", "officePhone":"570-111-2525", "email":"kmalone@dundermifflin.com"},
-                {"id": 8, "firstName": "Oscar", "lastName": "Martinez", "title":"Accountant", "managerId": 6, "city":"Scranton, PA", "cellPhone":"570-321-9999", "officePhone":"570-585-3333", "email":"oscar@dundermifflin.com"},
-                {"id": 9, "firstName": "Creed", "lastName": "Bratton", "title":"Quality Assurance", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-222-6666", "officePhone":"570-333-8585", "email":"creed@dundermifflin.com"},
-                {"id": 10, "firstName": "Andy", "lastName": "Bernard", "title":"Sales Director", "managerId": 4, "city":"Scranton, PA", "cellPhone":"570-555-0000", "officePhone":"570-646-9999", "email":"andy@dundermifflin.com"},
-                {"id": 11, "firstName": "Phyllis", "lastName": "Lapin", "title":"Sales Representative", "managerId": 10, "city":"Scranton, PA", "cellPhone":"570-241-8585", "officePhone":"570-632-1919", "email":"phyllis@dundermifflin.com"},
-                {"id": 12, "firstName": "Stanley", "lastName": "Hudson", "title":"Sales Representative", "managerId": 10, "city":"Scranton, PA", "cellPhone":"570-700-6464", "officePhone":"570-787-9393", "email":"shudson@dundermifflin.com"},
-                {"id": 13, "firstName": "Meredith", "lastName": "Palmer", "title":"Supplier Relations", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-588-6567", "officePhone":"570-981-6167", "email":"meredith@dundermifflin.com"},
-                {"id": 14, "firstName": "Kelly", "lastName": "Kapoor", "title":"Customer Service Rep.", "managerId": 2, "city":"Scranton, PA", "cellPhone":"570-123-9654", "officePhone":"570-125-3666", "email":"kelly@dundermifflin.com"},
-                {"id": 15, "firstName": "Toby", "lastName": "Flenderson", "title":"Human Resources", "managerId": 1, "city":"Scranton, PA", "cellPhone":"570-485-8554", "officePhone":"570-699-5577", "email":"toby@dundermifflin.com"}
+        var snows = [
+                {"id": 1, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 22:01:04"},
+                {"id": 2, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 23:04:33"},
+                {"id": 3, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 00:22:53"},
+                {"id": 4, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 01:10:10"},
+                {"id": 5, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 02:44:01"},
+                {"id": 6, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 4, "rdate": "2014-01-01 03:00:11"},
+                {"id": 7, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 04:09:20"},
+                {"id": 8, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 05:01:00"},
+                {"id": 9, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 06:12:13"},
+                {"id": 10, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 8, "rdate": "2014-01-01 07:04:03"},
+                {"id": 11, "city": "Evanston", "state": "IL", "zip": "60208", "snow_depth": 11, "rdate": "2014-01-01 08:02:09"}
             ];
-        var l = employees.length;
-        var sql = "INSERT OR REPLACE INTO employee " +
-            "(id, firstName, lastName, managerId, title, city, officePhone, cellPhone, email) " +
-            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        var e;
+        var l = snows.length;
+        var sql = "INSERT OR REPLACE INTO weather " +
+            "(id, city, state, zip, snow_depth, rdate) " +
+            "VALUES (?, ?, ?, ?, ?, ?)";
+        var s;
         for (var i = 0; i < l; i++) {
-            e = employees[i];
-            tx.executeSql(sql, [e.id, e.firstName, e.lastName, e.managerId, e.title, e.city, e.officePhone, e.cellPhone, e.email],
+            s = snows[i];
+            tx.executeSql(sql, [s.id, s.city, s.state, s.zip, s.snow_depth, s.rdate],
                     function() {
                         console.log('INSERT success');
                     },
@@ -73,6 +66,28 @@ var WebSqlStore = function(successCallback, errorCallback) {
                         alert('INSERT error: ' + error.message);
                     });
         }
+    }
+
+    this.All = function(tx, callback) {
+        this.db.transaction(
+            function(tx) {
+
+                var sql = "SELECT * FROM weather";
+
+                tx.executeSql(sql, [], function(tx, results) {
+                    var len = results.rows.length,
+                        snows = [],
+                        i = 0;
+                    for (; i < len; i = i + 1) {
+                        snows[i] = results.rows.item(i);
+                    }
+                    callback(snows);
+                });
+            },
+            function(error) {
+                alert("Transaction Error: " + error.message);
+            }
+        );
     }
 
     this.findByName = function(searchKey, callback) {
@@ -86,12 +101,12 @@ var WebSqlStore = function(successCallback, errorCallback) {
 
                 tx.executeSql(sql, ['%' + searchKey + '%'], function(tx, results) {
                     var len = results.rows.length,
-                        employees = [],
+                        snows = [],
                         i = 0;
                     for (; i < len; i = i + 1) {
-                        employees[i] = results.rows.item(i);
+                        snows[i] = results.rows.item(i);
                     }
-                    callback(employees);
+                    callback(snows);
                 });
             },
             function(error) {
