@@ -24,22 +24,23 @@
 	</div>
 	<br/>
 
-	<button onclick="app.checkSnow(); return false;" class="btn btn-warning">Check for Recent Snowfall</button>
+	<button onclick="app.checkSnow(); return false;" class="btn btn-danger">Check on Your Car</button>
 </div>
 
 <br/>
 
-Recent Snow Log
 <div class="container">
-<table class="table striped-rows">
-	<thead>
-		<td><b>Date and Time</b></td>
-		<td><b>Snow Depth (in.)</b></td>
-	<thead>
-	<tbody class="snow-list">
-		
-	</tbody>
-</table>
+	<h2>Recent Snow Log</h2>
+	<table id="snow-log" class="table striped-rows">
+		<thead>
+			<td><b>Date and Time</b></td>
+			<td><b>Snow Depth (in.)</b></td>
+		<thead>
+		<tbody class="snow-list">
+			
+		</tbody>
+	</table>
+	<button id="morebtn" onclick="app.showMore(); return false;" class="btn btn-info">See the rest</button>
 </div>
 
 
