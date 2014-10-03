@@ -47,29 +47,48 @@ var app = {
     },
 
     vibrate: function() {
-        navigator.notification.vibrate(2000);
+        navigator.vibrate(2000);
     },
+
+
     showData: function() {
         this.store.All($('.search-key').val(), function(snows) {
             var l = snows.length;
             snowdata = snows;
             var s;
             $('.snow-list').empty();
-            for (var i=0; i<l; i++) {
+            for (var i= l-5; i < l; i++) {
                 s = snows[i];
-                $('.snow-list').append('<tr> <td> '+ s.id+ "</td> <td>" +s.rdate +"</td> <td>" + s.snow_depth + '</td></tr>');
+                $('.snow-list').prepend("<tr> <td>" + s.rdate +"</td> <td>" + s.snow_depth + '</td></tr>');
             }
         });
     },
+
+    showMore: function() {
+        this.store.All($('.search-key').val(), function(snows) {
+            var l = snows.length;
+            snowdata = snows;
+            var s;
+            $('.snow-list').empty();
+            for (var i=0; i < l; i++) {
+                s = snows[i];
+                $('.snow-list').prepend("<tr> <td>" + s.rdate +"</td> <td>" + s.snow_depth + '</td></tr>');
+            }
+        });
+        $('#morebtn').hide();
+    },
+
     dateTime: function() {
-        $('.dateTime').html(Date());
+        var dumDate = new Date(2014,0,1,6,10,10);
+        dumDate = dumDate.toLocaleString();
+        $('.dateTime').html(dumDate);
     },
 
     checkSnow: function() {
-        var dummyCurrTime = new Date("2014-01-01 01:10:10")
-        for(var i = 0; i<snowdata.length;i++) {
+        var dummyCurrTime = new Date("2014-01-01 06:10:10")
+        for(var i = 0; i<snowdata.length; i++) {
             if(new Date(snowdata[i].rdate) < dummyCurrTime && snowdata[i].snow_depth>=2) {
-                alert("Move your car!! There was " + snowdata[i].snow_depth + "inches of snow!");
+                alert("Move it before 8am! There was at least " + snowdata[i].snow_depth + " inches of snow overnight.");
                 break;
             }
 

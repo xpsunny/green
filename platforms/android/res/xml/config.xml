@@ -1,17 +1,31 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.coenraets.employeedirectory" version="1.1.0" versionCode="10" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.placeholder.ticketskipper" version="1.1.0" versionCode="10" xmlns="http://github.com/xpsunny/green" xmlns:gap="http://github.com/xpsunny/green">
     <preference name="loglevel" value="DEBUG" />
     <preference name="AndroidLaunchMode" value="singleTop" />
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
-    <name>Employee Directory</name>
+    <feature name="PushPlugin">
+        <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="PushAppsPlugin">
+        <param name="android-package" value="com.pushapps.phonegap.PushAppsPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>Ticket Skipper</name>
     <description>
-        A simple employee directory application
+        Snow reminder
     </description>
-    <author email="ccoenraets@gmail.com" href="http://coenraets.org">
-        Christophe Coenraets
+    <author email="eecs394teamgreen@gmail.com" href="http://teamgreen.org">
+        EECS394 Team Green
     </author>
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+    <gap:plugin name="org.apache.cordova.vibration" version="0.3.11" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.3.1" />
+    <plugin name="Notification" value="org.apache.cordova.Notification" />
     <feature name="http://api.phonegap.com/1.0/camera" />
     <feature name="http://api.phonegap.com/1.0/contacts" />
     <feature name="http://api.phonegap.com/1.0/file" />

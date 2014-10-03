@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns       = "http://www.w3.org/ns/widgets"
-        xmlns:gap   = "http://phonegap.com/ns/1.0"
-        id          = "org.coenraets.employeedirectory"
+<widget xmlns       = "http://github.com/xpsunny/green"
+        xmlns:gap   = "http://github.com/xpsunny/green"
+        id          = "com.placeholder.ticketskipper"
         versionCode = "10"
         version     = "1.1.0">
  
-    <name>Employee Directory</name>
+    <name>Ticket Skipper</name>
  
     <description>
-        A simple employee directory application
+        Snow reminder
     </description>
  
-    <author href="http://coenraets.org" email="ccoenraets@gmail.com">
-        Christophe Coenraets
+    <author href="http://teamgreen.org" email="eecs394teamgreen@gmail.com">
+        EECS394 Team Green
     </author>
- 
+    
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+    <gap:plugin name="org.apache.cordova.vibration" version="0.3.11" />
+    <gap:plugin name="com.phonegap.plugins.pushplugin" version="2.3.1" />
+    <plugin name="Notification" value="org.apache.cordova.Notification"/>
+
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
     <feature name="http://api.phonegap.com/1.0/file"/>

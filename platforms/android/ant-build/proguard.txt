@@ -1,3 +1,21 @@
+# view AndroidManifest.xml #generated:32
+-keep class com.groboot.pushapps.GCMBaseIntentServiceImpl { <init>(...); }
+
+# view AndroidManifest.xml #generated:25
+-keep class com.groboot.pushapps.GCMBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:33
+-keep class com.groboot.pushapps.PushActivity { <init>(...); }
+
 # view AndroidManifest.xml #generated:6
--keep class org.coenraets.employeedirectory.HelloWorld2 { <init>(...); }
+-keep class com.placeholder.ticketskipper.HelloWorld2 { <init>(...); }
+
+# view AndroidManifest.xml #generated:17
+-keep class com.plugin.gcm.CordovaGCMBroadcastReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:24
+-keep class com.plugin.gcm.GCMIntentService { <init>(...); }
+
+# view AndroidManifest.xml #generated:16
+-keep class com.plugin.gcm.PushHandlerActivity { <init>(...); }
 
