@@ -1,4 +1,4 @@
-/Users/Chengaroo/documents/programming/eecs394/green/platforms/android/ant-gen/com/placeholder/ticketskipper/R.java \
+/Users/Chengaroo/documents/programming/eecs394/green/platforms/android/ant-gen/org/coenraets/employeedirectory/R.java \
  : /Users/Chengaroo/documents/programming/eecs394/green/platforms/android/res/drawable/icon.png \
 /Users/Chengaroo/documents/programming/eecs394/green/platforms/android/res/drawable-hdpi/icon.png \
 /Users/Chengaroo/documents/programming/eecs394/green/platforms/android/res/drawable-land-hdpi/screen.png \

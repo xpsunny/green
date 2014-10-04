@@ -4,11 +4,9 @@
   name="viewport"
   content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   
 </head>
 <body onload="app.showData();">
-<?php 
-
-?> 
 <title>TicketSkipper</title>
 <div class='container'>
 	<div class='header text-center'>
@@ -26,11 +24,15 @@
 
 	</div>
 	<br/>
+    
+    
+    <br/>
 
 	<button onclick="app.checkSnow(); return false;" class="btn btn-danger">Check on Your Car</button>
 </div>
 
 <br/>
+   <script type="text/javascript" src="http://voap.weather.com/weather/oap/USIL0389?template=EVNTV&par=3000000007&unit=0&key=twciweatherwidget"></script>
 
 <div class="container">
 	<h2>Recent Snow Log</h2>
@@ -44,15 +46,12 @@
 		</tbody>
 	</table>
 	<button id="morebtn" onclick="app.showMore(); return false;" class="btn btn-info">See the rest</button>
-
-	<button onclick="app.vibrate(); return false;" class="btn btn-info">vibrate</button>
-	<button onclick="app.playBeep(); return false;" class="btn btn-info">beep</button>
 </div>
 
 
 
 
-<script src="lib/cordova.js"></script>
+<script src="phonegap.js"></script>
 <script src="lib/jquery-1.8.2.min.js"></script>
 <script src="lib/bootstrap.min.js"></script>
 <script src="js/storage/websql-store.js"></script>

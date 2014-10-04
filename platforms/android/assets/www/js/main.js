@@ -47,10 +47,8 @@ var app = {
     },
 
     vibrate: function() {
-        navigator.vibrate(2000);
+        navigator.notification.vibrate(2000);
     },
-
-
     showData: function() {
         this.store.All($('.search-key').val(), function(snows) {
             var l = snows.length;

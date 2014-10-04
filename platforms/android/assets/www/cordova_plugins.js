@@ -1,33 +1,7 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
-module.exports = [
-    {
-        "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
-        "id": "com.phonegap.plugins.PushPlugin.PushNotification",
-        "clobbers": [
-            "PushNotification"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.device/www/device.js",
-        "id": "org.apache.cordova.device.device",
-        "clobbers": [
-            "device"
-        ]
-    },
-    {
-        "file": "plugins/com.pushapps.phonegap/www/pushapps.js",
-        "id": "com.pushapps.phonegap.PushApps",
-        "clobbers": [
-            "PushNotification"
-        ]
-    }
-];
+module.exports = [];
 module.exports.metadata = 
 // TOP OF METADATA
-{
-    "com.phonegap.plugins.PushPlugin": "2.3.1",
-    "org.apache.cordova.device": "0.2.12",
-    "com.pushapps.phonegap": "1.6.0"
-}
+{}
 // BOTTOM OF METADATA
 });
