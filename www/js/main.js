@@ -84,14 +84,34 @@ var app = {
 
     checkSnow: function() {
         var dummyCurrTime = new Date("2014-01-01 06:10:10")
-        for(var i = 0; i<snowdata.length; i++) {
-            if(new Date(snowdata[i].rdate) < dummyCurrTime && snowdata[i].snow_depth>=2) {
-                alert("Move it before 8am! There was at least " + snowdata[i].snow_depth + " inches of snow overnight.");
-                break;
-            }
+        var maxSnow = 0;
+        var changeSnow = 0;
+        var logLen = snowdata.length;
+        var firstHour = logLen-3;
 
+        for(var i = firstHour; i<logLen; i++) {
+            if (snowdata[i].snow_depth > maxSnow) {
+                maxSnow = snowdata[i].snow_depth;
+            }
         }
 
+        changeSnow = maxSnow - snowdata[firstHour].snow_depth;
+
+        if (changeSnow >= 2) {
+            alert("Move your car before 8am. There was " + changeSnow + " inches of snow overnight -- don't forget your boots!");
+        } else {
+            alert("No need to panic. The plows aren't coming today.");
+        }
+    },
+
+    fetchData: function() {
+        alert('click fetch');
+        var fetch;
+        this.store.fetchApi($('.search-key').val(), function(fetch){
+            $.each(fetch, function( index, value ){
+                $("#show_temperature").append(value['snow_depth']);
+            });
+        });
     }
 };
 

@@ -32,7 +32,7 @@
 </div>
 
 <br/>
-   <script type="text/javascript" src="http://voap.weather.com/weather/oap/USIL0389?template=EVNTV&par=3000000007&unit=0&key=twciweatherwidget"></script>
+   <!--<script type="text/javascript" src="http://voap.weather.com/weather/oap/USIL0389?template=EVNTV&par=3000000007&unit=0&key=twciweatherwidget"></script>-->
 
 <div class="container">
 	<h2>Recent Snow Log</h2>
@@ -47,6 +47,9 @@
 	</table>
 	<button id="morebtn" onclick="app.showMore(); return false;" class="btn btn-info">See the rest</button>
 </div>
+
+<button onclick="app.fetchData(); return false;">get api</button>
+<div id="show_temperature">!!!!!!</div>
 
 
 
