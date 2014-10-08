@@ -1,0 +1,62 @@
+<html>
+<head>
+	<meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   
+</head>
+<body onload="app.showData();">
+<title>TicketSkipper</title>
+<div class='container'>
+	<div class='header text-center'>
+		<h1>TicketSkipper</h1>
+		<span>Stealing tow truck business since 2014.</span>
+	</div>
+
+	<br/>
+	<br/>
+
+
+	<div>
+		<span><b>Today is: </b></span>
+		<span class="dateTime"></span>
+
+	</div>
+	<br/>
+    
+    
+    <br/>
+
+	<button onclick="app.checkSnow(); return false;" class="btn btn-danger">Check on Your Car</button>
+</div>
+
+<br/>
+   <script type="text/javascript" src="http://voap.weather.com/weather/oap/USIL0389?template=EVNTV&par=3000000007&unit=0&key=twciweatherwidget"></script>
+
+<div class="container">
+	<h2>Recent Snow Log</h2>
+	<table id="snow-log" class="table striped-rows">
+		<thead>
+			<td><b>Date and Time</b></td>
+			<td><b>Snow Depth (in.)</b></td>
+		<thead>
+		<tbody class="snow-list">
+			
+		</tbody>
+	</table>
+	<button id="morebtn" onclick="app.showMore(); return false;" class="btn btn-info">See the rest</button>
+</div>
+
+
+
+
+<script src="phonegap.js"></script>
+<script src="lib/jquery-1.8.2.min.js"></script>
+<script src="lib/bootstrap.min.js"></script>
+<script src="js/storage/websql-store.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
