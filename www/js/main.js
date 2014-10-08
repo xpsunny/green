@@ -20,12 +20,32 @@ var app = {
     initialize: function() {
         var self = this;
         this.store = new WebSqlStore();
-
+        $('.search-key').on('keyup', $.proxy(this.findByName, this));
         this.dateTime();
-        this.showData();
-        this.checkSnow();
     },
 
+
+    showAlert: function (message, title) {
+        if(this.store.checkSnow()){       
+            if (navigator.notification) {
+                navigator.notification.alert(message, null, title, 'OK');
+            } else {
+                alert("Move your car!!! " + this.store.checkSnow());
+            }
+         } else {
+            if (navigator.notification) {
+                navigator.notification.alert(message, null, title, 'OK');
+            } else {
+                alert("There was no snowfall");
+            }
+
+         }
+    },
+
+    gogogo: function() {
+        this.playBeep();
+        this.vibrate();
+    },
 
     playBeep: function() {
         navigator.notification.beep(3);
@@ -68,45 +88,36 @@ var app = {
     },
 
     checkSnow: function() {
-        var dummyCurrTime = new Date("2014-01-01 06:10:10");
-       
+        var dummyCurrTime = new Date("2014-01-01 06:10:10")
+        var maxSnow = 0;
+        var changeSnow = 0;
+        var logLen = snowdata.length;
+        var firstHour = logLen-3;
 
-        this.store.All($('.search-key').val(), function(snowdata) {
-            var maxSnow = 0;
-            var changeSnow = 0;
-            var logLen = snowdata.length;
-
-            for(var i = 0; i < logLen; i++) {
-                if (new Date(snowdata[i].rdate) > dummyCurrTime) {
-                    break;
-                }
-                if (snowdata[i].snow_depth > maxSnow) {
-                    maxSnow = snowdata[i].snow_depth;
-                }
+        for(var i = firstHour; i<logLen; i++) {
+            if (snowdata[i].snow_depth > maxSnow) {
+                maxSnow = snowdata[i].snow_depth;
             }
+        }
 
-            changeSnow = maxSnow - snowdata[0].snow_depth;
+        changeSnow = maxSnow - snowdata[firstHour].snow_depth;
 
+        if (changeSnow >= 2) {
+            alert("Move your car before 8am. There was " + changeSnow + " inches of snow overnight -- don't forget your boots!");
+        } else {
+            alert("No need to panic. The plows aren't coming today.");
+        }
+    },
 
-            if (changeSnow >= 2) {
-                alert("Move your car before 8am. There was " + changeSnow + " inches of snow overnight -- don't forget your boots!");
-            } else {
-                alert("No need to panic. The plows aren't coming today.");
-            }
+    fetchData: function() {
+        alert('click fetch');
+        var fetch;
+        this.store.fetchApi($('.search-key').val(), function(fetch){
+            $.each(fetch, function( index, value ){
+                $("#show_temperature").append(value['snow_depth']);
+            });
         });
-
-        
-
     }
 };
 
 app.initialize();
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
