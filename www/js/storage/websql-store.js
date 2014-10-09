@@ -40,15 +40,15 @@ var WebSqlStore = function(successCallback, errorCallback) {
     this.addSampleData = function(tx, employees) {
         var snows = [
                 {"id": 1, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 22:01:04"},
-                {"id": 2, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 1, "rdate": "2013-12-31 23:04:33"},
-                {"id": 3, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 00:22:53"},
-                {"id": 4, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 01:10:10"},
-                {"id": 5, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2014-01-01 02:44:01"},
-                {"id": 6, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 4, "rdate": "2014-01-01 03:00:11"},
-                {"id": 7, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 04:09:20"},
-                {"id": 8, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 05:01:00"},
-                {"id": 9, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 06:12:13"},
-                {"id": 10, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 8, "rdate": "2014-01-01 07:04:03"},
+                {"id": 2, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 2, "rdate": "2013-12-31 23:04:33"},
+                {"id": 3, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 3, "rdate": "2014-01-01 00:22:53"},
+                {"id": 4, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 4, "rdate": "2014-01-01 01:10:10"},
+                {"id": 5, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 5, "rdate": "2014-01-01 02:44:01"},
+                {"id": 6, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 6, "rdate": "2014-01-01 03:00:11"},
+                {"id": 7, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 7, "rdate": "2014-01-01 04:09:20"},
+                {"id": 8, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 8, "rdate": "2014-01-01 05:01:00"},
+                {"id": 9, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 9, "rdate": "2014-01-01 06:12:13"},
+                {"id": 10, "city": "Evanston", "state": "IL", "zip": "60201", "snow_depth": 10, "rdate": "2014-01-01 07:04:03"},
                 {"id": 11, "city": "Evanston", "state": "IL", "zip": "60208", "snow_depth": 11, "rdate": "2014-01-01 08:02:09"}
             ];
         var l = snows.length;
